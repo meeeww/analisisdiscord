@@ -1,13 +1,13 @@
 const { SlashCommandBuilder } = require("discord.js")
 const mysql = require("mysql")
 let conexion = mysql.createConnection({
-    host: "82.223.64.145",
-    database: "amateurdb",
-    user: "appsscript",
-    password: "8@k99b#*yD"
+    host: (process.env.HOST),
+    database: (process.env.DATABASE),
+    user: (process.env.USER),
+    password: (process.env.PASSWORD)
 })
 
-var apiKey = "RGAPI-b245e917-eb17-40b0-81e4-69bc506bfda2";
+var apiKey = (process.env.APIKEY)
 let returnValue
 
 module.exports = {
@@ -17,7 +17,11 @@ module.exports = {
             option.setName("invocador")
                 .setDescription("Insertar el nombre del invocador exacto")
                 .setRequired(true)
-
+        )
+        .addStringOption(option =>
+            option.setName("equipo")
+                .setDescription("Insertar el nombre del equipo")
+                .setRequired(false)
         ),
 
 
@@ -71,15 +75,16 @@ module.exports = {
                                 throw error
                             }
                         })
-                    } catch {
+                    } catch (error) {
                         console.log("partida ya existe")
+                        console.log(error)
                     }
 
                 }
 
             }
             cuenta = cuenta + 100
-        } while (comprobador = 1)
+        } while (comprobador == 0)
         //////rankeds finalizado, iniciando tourneys
         cuenta = 0
         comprobador = 0
@@ -104,7 +109,7 @@ module.exports = {
                 }
             }
             cuenta = cuenta + 100
-        } while (comprobador = 1)
+        } while (comprobador == 0)
         //////tourneys finalizado
         conexion.end()
         return interaction.reply("El jugador **" + jugador.value + "** ha sido insertado correctamente.")

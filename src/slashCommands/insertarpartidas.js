@@ -7,7 +7,7 @@ let conexion = mysql.createConnection({
     password: "8@k99b#*yD"
 })
 
-var apiKey = "RGAPI-b245e917-eb17-40b0-81e4-69bc506bfda2";
+var apiKey = "RGAPI-441088f5-d512-47ac-a283-8e288b4f6ca2";
 let returnValue
 
 module.exports = {
