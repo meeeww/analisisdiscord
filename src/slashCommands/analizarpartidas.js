@@ -45,17 +45,20 @@ module.exports = {
 
         let numeroPartidas = []
 
-        conexion.query("SELECT * FROM `partidas` WHERE idJugador = ?", idJugador, function (error, results, fields) {
+        await conexion.query("SELECT * FROM `partidas` WHERE idJugador = ?", idJugador, function (error, results, fields) {
             if (error) {
                 throw error
             } else {
-                results.forEach(fila => {
-                    if (fila.idJugador == idJugador) {
-                        numeroPartidas.push[fila.idPartida]
+                for(let i = 0; i < results.length; i++){
+                    if(results[i]["idJugador"] == puuidJugador){
+                        console.log("asd")
+                        numeroPartidas.push(results[i]["idPartida"])
                     }
-                });
+                }
             }
         })
+        console.log("terminamos")
+        console.log(numeroPartidas)
         //////insertar jugadores finalizado, iniciando rankeds
         conexion.query("INSERT INTO `eventos` (`servidor`, `peticion`, `jugador`, `estado`, `fecha`) VALUES ('" + servidor + "', 'Analizar Partidas', '" + data.name + "', 'COMPLETADO', '" + fecha.getFullYear() + "/" + fecha.getMonth() + "/" + fecha.getDate() + "')", function (error, results, fields) {
             if (error) {
@@ -63,7 +66,7 @@ module.exports = {
             }
         })
         console.log(data)
-        for (var i = 0; i < numeroPartidasRanked.length; i++) {
+        for (var i = 0; i < numeroPartidas.length; i++) {
             console.log("vuelta " + i + " " + numeroPartidas[i])
             try {
                 url = "https://europe.api.riotgames.com/lol/match/v5/matches/" + numeroPartidas[i] + "?api_key=" + apiKey
@@ -178,6 +181,6 @@ module.exports = {
         }
         //////tourneys finalizado
         conexion.end()
-        return interaction.reply("El jugador **" + jugador.value + "** ha sido insertado correctamente.")
+        return interaction.reply("El jugador **" + interaction.options.get("invocador").value + "** ha sido insertado correctamente.")
     }
 }

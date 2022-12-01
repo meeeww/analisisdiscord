@@ -17,11 +17,6 @@ module.exports = {
             option.setName("invocador")
                 .setDescription("Insertar el nombre del invocador exacto")
                 .setRequired(true)
-        )
-        .addStringOption(option =>
-            option.setName("equipo")
-                .setDescription("Insertar el nombre del equipo")
-                .setRequired(false)
         ),
 
 
@@ -45,7 +40,7 @@ module.exports = {
         let puuidJugador = data.puuid
         let idJugador = data.id
 
-        conexion.query("INSERT INTO `jugadores` (`idJugador`, `puuidJugador`, `nombreJugador`, `equipoJugador`) VALUES ('" + data.id + "', '" + data.puuid + "', '" + data.name + "', 'ninguno')", function (error, results, fields) {
+        conexion.query("INSERT INTO `jugadores` (`idJugador`, `puuidJugador`, `nombreJugador`, `nombreEquipo`) VALUES ('" + data.id + "', '" + data.puuid + "', '" + data.name + "', 'ninguno')", function (error, results, fields) {
             if (error) {
                 throw error
             }
