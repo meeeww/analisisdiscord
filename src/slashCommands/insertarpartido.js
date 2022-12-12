@@ -106,12 +106,11 @@ module.exports = {
         //////insertar jugadores finalizado, iniciando rankeds
 
         try {
-            conexion.query("INSERT INTO infoEquipos VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
+            conexion.query("INSERT INTO infoEquipos VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
                 idPartida,
                 equipo,
                 data["info"]["teams"][equipoNumero]["win"],
                 data["info"]["gameDuration"],
-                0, //drakeantes20
                 almaConseguida,//6
                 dosHeraldos,
                 data["info"]["teams"][equipoNumero]["objetives"]["champion"]["first"],
