@@ -26,12 +26,10 @@ module.exports = {
             if (error) {
                 throw error
             } else {
-                console.log("conectados perfectamente")
             }
         })
 
         let jugador = interaction.options.get("invocador").value.replace(/ /g, '%20')
-        console.log(jugador)
 
         let url = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + jugador + "?api_key=" + apiKey
         let response = await fetch(url)
@@ -46,16 +44,14 @@ module.exports = {
             }
         })
 
-        let fecha = new Date()
-        conexion.query("INSERT INTO `eventos` (`servidor`, `peticion`, `jugador`, `estado`, `fecha`) VALUES ('" + servidor + "', 'Analizar Jugador', '" + data.name + "', 'COMPLETADO', '" + fecha.getFullYear() + "/" + fecha.getMonth() + "/" + fecha.getDate() + "')", function (error, results, fields) {
-            if (error) {
-                throw error
-            }
-        })
+        
         //////insertar jugadores finalizado, iniciando rankeds
         let cuenta = 0
         let comprobador = 0
         do {
+            interaction.channel.send("Seguimos...").then(msg => {
+                setTimeout(() => msg.delete(), 10000)
+            })
             url = "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuidJugador + "/ids?type=ranked&start=" + cuenta + "&count=100&api_key=" + apiKey
             response = await fetch(url)
             data = await response.json()
@@ -71,8 +67,6 @@ module.exports = {
                             }
                         })
                     } catch (error) {
-                        console.log("partida ya existe")
-                        console.log(error)
                     }
 
                 }
@@ -84,7 +78,10 @@ module.exports = {
         cuenta = 0
         comprobador = 0
         do {
-            url = "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuidJugador + "/ids?type=tourney&start=" + cuenta + "&count=100&api_key=" + apiKey
+            interaction.channel.send("Seguimos...").then(msg => {
+                setTimeout(() => msg.delete(), 10000)
+            })
+            url = "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuidJugador + "/ids?endTime=1643673600000&type=tourney&start=" + cuenta + "&count=100&api_key=" + apiKey
             response = await fetch(url)
             data = await response.json()
 
@@ -99,13 +96,21 @@ module.exports = {
                             }
                         })
                     } catch {
-                        console.log("partida ya existe")
                     }
                 }
             }
             cuenta = cuenta + 100
         } while (comprobador == 0)
         //////tourneys finalizado
+        interaction.channel.send("Ya hemos terminado").then(msg => {
+            setTimeout(() => msg.delete(), 10000)
+        })
+        let fecha = new Date()
+        conexion.query("INSERT INTO `eventos` (`servidor`, `peticion`, `jugador`, `estado`, `fecha`) VALUES ('" + servidor + "', 'Analizar Jugador', '" + data.name + "', 'COMPLETADO', '" + fecha.getFullYear() + "/" + fecha.getMonth() + "/" + fecha.getDate() + "')", function (error, results, fields) {
+            if (error) {
+                throw error
+            }
+        })
         conexion.end()
         return interaction.reply("El jugador **" + jugador.value + "** ha sido insertado correctamente.")
     }
