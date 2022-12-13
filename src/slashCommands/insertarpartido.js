@@ -19,7 +19,7 @@ module.exports = {
                 .setRequired(true)
         )
         .addStringOption(option =>
-            option.setName("IDPartida")
+            option.setName("idpartida")
                 .setDescription("Insertar el ID de partida")
                 .setRequired(true)
         )
@@ -43,12 +43,14 @@ module.exports = {
             }
         })
 
+        let fecha = new Date()
 
-
-        let equipo = interaction.options.get("invocador").value
+        let equipo = interaction.options.get("equipo").value
         let equipoRival = interaction.options.get("rival").value
-        let idPartida = interaction.options.get("IDPartida").value
+        let idPartida = interaction.options.get("idpartida").value
         let lado = interaction.options.get("lado").value
+
+        
 
         let jugadores = []
         let equipoNumero
@@ -77,10 +79,11 @@ module.exports = {
 
         let almaConseguida = 0
         let dosHeraldos = 0
-        if (data["info"]["teams"][equipoNumero]["dragon"]["kills"] >= 4) {
+        console.log(data["info"]["teams"][equipoNumero]["objectives"])
+        if (data["info"]["teams"][equipoNumero]["objectives"]["dragon"]["kills"] >= 4) {
             almaConseguida = 1
         }
-        if (data["info"]["teams"][equipoNumero]["riftHerald"]["kills"] >= 2) {
+        if (data["info"]["teams"][equipoNumero]["objectives"]["riftHerald"]["kills"] >= 2) {
             dosHeraldos = 1
         }
 
@@ -113,15 +116,15 @@ module.exports = {
                 data["info"]["gameDuration"],
                 almaConseguida,//6
                 dosHeraldos,
-                data["info"]["teams"][equipoNumero]["objetives"]["champion"]["first"],
-                data["info"]["teams"][equipoNumero]["objetives"]["tower"]["first"],
+                data["info"]["teams"][equipoNumero]["objectives"]["champion"]["first"],
+                data["info"]["teams"][equipoNumero]["objectives"]["tower"]["first"],
                 wardControl,
-                data["info"]["teams"][equipoNumero]["objetives"]["champion"]["kills"],
-                data["info"]["teams"][equipoNumeroRival]["objetives"]["champion"]["kills"],//deaths
-                data["info"]["teams"][equipoNumero]["objetives"]["tower"]["kills"],//torres
-                data["info"]["teams"][equipoNumero]["objetives"]["dragon"]["kills"],//dragones
-                data["info"]["teams"][equipoNumero]["objetives"]["baron"]["kills"],//nashors
-                data["info"]["teams"][equipoNumero]["objetives"]["riftHerald"]["kills"],//heraldos
+                data["info"]["teams"][equipoNumero]["objectives"]["champion"]["kills"],
+                data["info"]["teams"][equipoNumeroRival]["objectives"]["champion"]["kills"],//deaths
+                data["info"]["teams"][equipoNumero]["objectives"]["tower"]["kills"],//torres
+                data["info"]["teams"][equipoNumero]["objectives"]["dragon"]["kills"],//dragones
+                data["info"]["teams"][equipoNumero]["objectives"]["baron"]["kills"],//nashors
+                data["info"]["teams"][equipoNumero]["objectives"]["riftHerald"]["kills"],//heraldos
 
                 data["info"]["participants"][jugadores[0]]["championName"],//picktop
                 data["info"]["participants"][jugadores[1]]["championName"],//pickjungla
@@ -153,6 +156,6 @@ module.exports = {
         interaction.channel.send("Listo. Ahora haz un /analizarmatchups o /actualizarpartidas").then(msg => {
             setTimeout(() => msg.delete(), 10000)
         })
-        return interaction.reply("El jugador **" + interaction.options.get("invocador").value + "** ha sido insertado correctamente.")
+        return interaction.reply("Listo!")
     }
 }
