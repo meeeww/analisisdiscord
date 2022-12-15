@@ -143,7 +143,110 @@ module.exports = {
                 ccDealt = 1
             }
         }
-        //////insertar jugadores finalizado, iniciando rankeds
+        //////conseguir shotcaller
+        let top = 0
+        let jungla = 0
+        let mid = 0
+        let adc = 0
+        let supp = 0
+
+        for(let i = 0; i < jugadores.length; i++){
+            switch(jugadores[i]){
+                case 0:
+                case 5:
+                    top = top + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    break
+                case 1:
+                case 6:
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    break
+                case 2:
+                case 7:
+                    mid = mid + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    break
+                case 3:
+                case 8:
+                    adc = adc + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    break
+                case 4:
+                case 9:
+                    supp = supp + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    break
+            }
+        }
+        let shotcaller = "NADIE"
+
+        if(top >= jungla && top >= mid && top >= adc && top >= supp){
+            shotcaller = "TOP"
+        } else if(jungla >= top && jungla >= mid && jungla >= adc && jungla >= supp){
+            shotcaller = "JUNGLA"
+        } else if(mid >= top && mid >= jungla && mid >= adc && mid >= supp){
+            shotcaller = "MID"
+        } else if(adc >= top && adc >= jungla && adc >= mid && adc >= supp){
+            shotcaller = "ADC"
+        } else if(supp >= top && supp >= jungla && supp >= adc && supp >= adc){
+            shotcaller = "SUPP"
+        }
 
         try {
             conexion.query("INSERT INTO infoEquipos VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
@@ -177,8 +280,9 @@ module.exports = {
 
                 lado,//lado
                 equipoRival,//equiporival
-                objectivesStolen
-                ccDealt
+                objectivesStolen,
+                ccDealt,
+                shotcaller
             ], function (error, results, fields) {
                 if (error) {
                     throw error
