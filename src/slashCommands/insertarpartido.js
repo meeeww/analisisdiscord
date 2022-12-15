@@ -83,7 +83,7 @@ module.exports = {
         if (data["info"]["teams"][equipoNumero]["riftHerald"]["kills"] >= 2) {
             dosHeraldos = 1
         }
-
+        //vision
         let visionScore
         let visionScore2
         let wardControl = 0
@@ -99,8 +99,48 @@ module.exports = {
                 wardControl = 1
             }
         } else if (equipoNumero == 1) {
-            if (visionScore2 >= visionScore) {
+            if (visionScore2 <= visionScore) {
                 wardControl = 1
+            }
+        }
+        //objectivesstolen
+        let objectivesScore
+        let objectivesScore2
+        let objectivesStolen = 0
+        for (var i = 0; i < 10; i++) {
+            if (i <= 4) {
+                objectivesScore = objectivesScore + data["info"]["participants"][i]["visionScore"]
+            } else if (i >= 5) {
+                objectivesScore2 = objectivesScore2 + data["info"]["participants"][i]["visionScore"]
+            }
+        }
+        if (equipoNumero == 0) {
+            if (objectivesScore >= objectivesScore2) {
+                objectivesStolen = 1
+            }
+        } else if (equipoNumero == 1) {
+            if (objectivesScore2 <= objectivesScore) {
+                objectivesStolen = 1
+            }
+        }
+        //cc dealt
+        let ccScore
+        let ccScore2
+        let ccDealt = 0
+        for (var i = 0; i < 10; i++) {
+            if (i <= 4) {
+                ccScore = ccScore + data["info"]["participants"][i]["visionScore"]
+            } else if (i >= 5) {
+                ccScore2 = ccScore2 + data["info"]["participants"][i]["visionScore"]
+            }
+        }
+        if (equipoNumero == 0) {
+            if (ccScore >= ccScore2) {
+                ccDealt = 1
+            }
+        } else if (equipoNumero == 1) {
+            if (ccScore <= ccScore2) {
+                ccDealt = 1
             }
         }
         //////insertar jugadores finalizado, iniciando rankeds
