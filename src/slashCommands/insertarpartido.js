@@ -146,7 +146,7 @@ module.exports = {
         //////insertar jugadores finalizado, iniciando rankeds
 
         try {
-            conexion.query("INSERT INTO infoEquipos VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
+            conexion.query("INSERT INTO infoEquipos VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
                 idPartida,
                 equipo,
                 data["info"]["teams"][equipoNumero]["win"],
@@ -177,6 +177,8 @@ module.exports = {
 
                 lado,//lado
                 equipoRival,//equiporival
+                objectivesStolen
+                ccDealt
             ], function (error, results, fields) {
                 if (error) {
                     throw error
