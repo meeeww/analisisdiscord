@@ -55,7 +55,6 @@ module.exports = {
         let equipoNumeroRival = 1
         let seguir = false
 
-        console.log(lado)
         switch (lado) {
             case "Blue":
                 jugadores = ["0", "1", "2", "3", "4"]
@@ -71,13 +70,11 @@ module.exports = {
                 seguir = false
                 break;
         }
-        console.log(equipoNumero)
 
         url = "https://europe.api.riotgames.com/lol/match/v5/matches/" + idPartida + "?api_key=" + apiKey
         response = await fetch(url)
         console.log(url)
         data = await response.json()
-        console.log(data["info"]["teams"][equipoNumero])
 
         let almaConseguida = 0
         let dosHeraldos = 0
@@ -108,8 +105,8 @@ module.exports = {
             }
         }
         //objectivesstolen
-        let objectivesScore
-        let objectivesScore2
+        let objectivesScore = 0
+        let objectivesScore2 = 0
         let objectivesStolen = 0
         for (var i = 0; i < 10; i++) {
             if (i <= 4) {
@@ -128,8 +125,8 @@ module.exports = {
             }
         }
         //cc dealt
-        let ccScore
-        let ccScore2
+        let ccScore = 0
+        let ccScore2 = 0
         let ccDealt = 0
         for (var i = 0; i < 10; i++) {
             if (i <= 4) {
@@ -147,7 +144,6 @@ module.exports = {
                 ccDealt = 1
             }
         }
-        console.log(ccScore + " > " + ccScore2)
         //////conseguir shotcaller
         let top = 0
         let jungla = 0
@@ -156,94 +152,211 @@ module.exports = {
         let supp = 0
 
         for (let i = 0; i < jugadores.length; i++) {
-            console.log(jugadores[i])
             switch (jugadores[i]) {
                 case "0":
                 case "5":
-                    top = top + data["info"]["participants"][jugadores[i]]["allInPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["baitPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["basicPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["commandPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["dangerPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["getBackPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["holdPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["needVisionPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
-                    top = top + data["info"]["participants"][jugadores[i]]["pushPings"]
-                    console.log(data["info"]["participants"][jugadores[i]]["pushPings"])
-                    console.log(top)
+                    if(data["info"]["participants"][jugadores[i]]["allInPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["baitPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["basicPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["commandPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["dangerPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["enemyMissingPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["enemyVisionPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["getBackPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["holdPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["needVisionPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["onMyWayPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["pushPings"] != undefined ){
+                        top = top + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    }
                     break
                 case "1":
                 case "6":
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["allInPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["baitPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["basicPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["commandPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["dangerPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["getBackPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["holdPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["needVisionPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["pushPings"]
-                    jungla = jungla + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    if(data["info"]["participants"][jugadores[i]]["allInPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["baitPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["basicPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["commandPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["dangerPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["enemyMissingPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["enemyVisionPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["getBackPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["holdPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["needVisionPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["onMyWayPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["pushPings"] != undefined ){
+                        jungla = jungla + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    }
                     break
                 case "2":
                 case "7":
-                    mid = mid + data["info"]["participants"][jugadores[i]]["allInPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["baitPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["basicPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["commandPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["dangerPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["getBackPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["holdPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["needVisionPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["pushPings"]
-                    mid = mid + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    if(data["info"]["participants"][jugadores[i]]["allInPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["baitPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["basicPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["commandPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["dangerPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["enemyMissingPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["enemyVisionPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["getBackPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["holdPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["needVisionPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["onMyWayPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["pushPings"] != undefined ){
+                        mid = mid + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    }
                     break
                 case "3":
                 case "8":
-                    adc = adc + data["info"]["participants"][jugadores[i]]["allInPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["baitPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["basicPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["commandPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["dangerPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["getBackPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["holdPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["needVisionPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["pushPings"]
-                    adc = adc + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    if(data["info"]["participants"][jugadores[i]]["allInPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["baitPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["basicPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["commandPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["dangerPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["enemyMissingPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["enemyVisionPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["getBackPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["holdPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["needVisionPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["onMyWayPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["pushPings"] != undefined ){
+                        adc = adc + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    }
                     break
                 case "4":
                 case "9":
-                    supp = supp + data["info"]["participants"][jugadores[i]]["allInPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["baitPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["basicPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["commandPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["dangerPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["getBackPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["holdPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["needVisionPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["pushPings"]
-                    supp = supp + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    if(data["info"]["participants"][jugadores[i]]["allInPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["baitPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["basicPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["commandPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["dangerPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["enemyMissingPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["enemyVisionPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["getBackPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["holdPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["needVisionPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["onMyWayPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    }
+                    if(data["info"]["participants"][jugadores[i]]["pushPings"] != undefined ){
+                        supp = supp + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    }
                     break
             }
         }
         let shotcaller = "NADIE"
 
-        console.log(top + ">" + supp)
+        console.log(top + " top")
+        console.log(jungla + " jungla")
+        console.log(mid + " mid")
+        console.log(adc + " adc")
+        console.log(supp + " supp")
         if (top >= jungla && top >= mid && top >= adc && top >= supp) {
             shotcaller = "TOP"
         } else if (jungla >= top && jungla >= mid && jungla >= adc && jungla >= supp) {
@@ -280,11 +393,11 @@ module.exports = {
             data["info"]["participants"][jugadores[3]]["championName"],//pickadc
             data["info"]["participants"][jugadores[4]]["championName"],//picksu`p
 
-            data["info"]["teams"][equipoNumero]["bans"][0]["championId"],//firstban
-            data["info"]["teams"][equipoNumero]["bans"][1]["championId"],//secondban
-            data["info"]["teams"][equipoNumero]["bans"][2]["championId"],//thirdban
-            data["info"]["teams"][equipoNumero]["bans"][3]["championId"],//fourthban
-            data["info"]["teams"][equipoNumero]["bans"][4]["championId"],//fifthban
+            0,//data["info"]["teams"][equipoNumero]["bans"][0]["championId"],//firstban
+            0,//data["info"]["teams"][equipoNumero]["bans"][1]["championId"],//secondban
+            0,//data["info"]["teams"][equipoNumero]["bans"][2]["championId"],//thirdban
+            0,//data["info"]["teams"][equipoNumero]["bans"][3]["championId"],//fourthban
+            0,//data["info"]["teams"][equipoNumero]["bans"][4]["championId"],//fifthban
 
             lado,//lado
             equipoRival,//equiporival
@@ -292,13 +405,11 @@ module.exports = {
             ccDealt,
             shotcaller
         ], function (error, results, fields) {
-            console.log("sent!")
             if (error) {
                 throw error
             }
         })
 
-        console.log("sent")
 
         conexion.query("INSERT INTO `eventos` (`servidor`, `peticion`, `jugador`, `estado`, `fecha`) VALUES ('" + servidor + "', 'Analizar Equipo', '" + data.name + "', 'COMPLETADO', '" + fecha.getFullYear() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getDate() + "')", function (error, results, fields) {
             if (error) {
