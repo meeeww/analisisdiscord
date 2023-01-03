@@ -105,8 +105,13 @@ module.exports = {
             }
         }
         //objectivesstolen
+<<<<<<< HEAD
         let objectivesScore = 0
         let objectivesScore2 = 0
+=======
+        let objectivesScore
+        let objectivesScore2
+>>>>>>> 6a1c7de6c66df8be0d47f6c6bcabbfb267abc166
         let objectivesStolen = 0
         for (var i = 0; i < 10; i++) {
             if (i <= 4) {
@@ -125,8 +130,13 @@ module.exports = {
             }
         }
         //cc dealt
+<<<<<<< HEAD
         let ccScore = 0
         let ccScore2 = 0
+=======
+        let ccScore
+        let ccScore2
+>>>>>>> 6a1c7de6c66df8be0d47f6c6bcabbfb267abc166
         let ccDealt = 0
         for (var i = 0; i < 10; i++) {
             if (i <= 4) {
@@ -150,6 +160,7 @@ module.exports = {
         let mid = 0
         let adc = 0
         let supp = 0
+<<<<<<< HEAD
 
         for (let i = 0; i < jugadores.length; i++) {
             switch (jugadores[i]) {
@@ -367,6 +378,148 @@ module.exports = {
             shotcaller = "ADC"
         } else if (supp >= top && supp >= jungla && supp >= adc && supp >= adc) {
             shotcaller = "SUPP"
+=======
+
+        for(let i = 0; i < jugadores.length; i++){
+            switch(jugadores[i]){
+                case 0:
+                case 5:
+                    top = top + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    top = top + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    break
+                case 1:
+                case 6:
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    jungla = jungla + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    break
+                case 2:
+                case 7:
+                    mid = mid + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    mid = mid + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    break
+                case 3:
+                case 8:
+                    adc = adc + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    adc = adc + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    break
+                case 4:
+                case 9:
+                    supp = supp + data["info"]["participants"][jugadores[i]]["allInPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["baitPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["basicPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["commandPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["dangerPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["enemyMissingPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["enemyVisionPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["getBackPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["holdPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["needVisionPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["onMyWayPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["pushPings"]
+                    supp = supp + data["info"]["participants"][jugadores[i]]["visionClearedPings"]
+                    break
+            }
+        }
+        let shotcaller = "NADIE"
+
+        if(top >= jungla && top >= mid && top >= adc && top >= supp){
+            shotcaller = "TOP"
+        } else if(jungla >= top && jungla >= mid && jungla >= adc && jungla >= supp){
+            shotcaller = "JUNGLA"
+        } else if(mid >= top && mid >= jungla && mid >= adc && mid >= supp){
+            shotcaller = "MID"
+        } else if(adc >= top && adc >= jungla && adc >= mid && adc >= supp){
+            shotcaller = "ADC"
+        } else if(supp >= top && supp >= jungla && supp >= adc && supp >= adc){
+            shotcaller = "SUPP"
+        }
+
+        try {
+            conexion.query("INSERT INTO infoEquipos VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
+                idPartida,
+                equipo,
+                data["info"]["teams"][equipoNumero]["win"],
+                data["info"]["gameDuration"],
+                almaConseguida,//6
+                dosHeraldos,
+                data["info"]["teams"][equipoNumero]["objetives"]["champion"]["first"],
+                data["info"]["teams"][equipoNumero]["objetives"]["tower"]["first"],
+                wardControl,
+                data["info"]["teams"][equipoNumero]["objetives"]["champion"]["kills"],
+                data["info"]["teams"][equipoNumeroRival]["objetives"]["champion"]["kills"],//deaths
+                data["info"]["teams"][equipoNumero]["objetives"]["tower"]["kills"],//torres
+                data["info"]["teams"][equipoNumero]["objetives"]["dragon"]["kills"],//dragones
+                data["info"]["teams"][equipoNumero]["objetives"]["baron"]["kills"],//nashors
+                data["info"]["teams"][equipoNumero]["objetives"]["riftHerald"]["kills"],//heraldos
+
+                data["info"]["participants"][jugadores[0]]["championName"],//picktop
+                data["info"]["participants"][jugadores[1]]["championName"],//pickjungla
+                data["info"]["participants"][jugadores[2]]["championName"],//pickmid
+                data["info"]["participants"][jugadores[3]]["championName"],//pickadc
+                data["info"]["participants"][jugadores[4]]["championName"],//picksu`p
+
+                data["info"]["teams"][equipoNumero]["bans"][0]["championId"],//firstban
+                data["info"]["teams"][equipoNumero]["bans"][1]["championId"],//secondban
+                data["info"]["teams"][equipoNumero]["bans"][2]["championId"],//thirdban
+                data["info"]["teams"][equipoNumero]["bans"][3]["championId"],//fourthban
+                data["info"]["teams"][equipoNumero]["bans"][4]["championId"],//fifthban
+
+                lado,//lado
+                equipoRival,//equiporival
+                objectivesStolen,
+                ccDealt,
+                shotcaller
+            ], function (error, results, fields) {
+                if (error) {
+                    throw error
+                }
+            })
+        } catch {
+>>>>>>> 6a1c7de6c66df8be0d47f6c6bcabbfb267abc166
         }
 
 
